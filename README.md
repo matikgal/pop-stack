@@ -1,102 +1,99 @@
-# 🎬 PopStack - Track & Stack Your Media
+# PopStack // MEDIA_TRACKING_PLATFORM
 
-> Social media platform for movie, TV show, and video game enthusiasts. Rate, review, and share your entertainment journey with friends.
+Platforma społecznościowa dla entuzjastów filmów, seriali i gier wideo. **Oceniaj, recenzuj** i dziel się swoją rozrywkową podróżą ze znajomymi.
 
-![PopStack](https://img.shields.io/badge/React-18-blue) ![TypeScript](https://img.shields.io/badge/TypeScript-5-blue) ![Supabase](https://img.shields.io/badge/Supabase-Backend-green) ![TailwindCSS](https://img.shields.io/badge/TailwindCSS-3-cyan)
+## Quick Start
 
-## 🚀 Quick Start
+### Tryb Demo (Bez Backendu)
 
-### Demo Mode (No Backend Required)
+Idealny do prezentacji w portfolio:
 
-Perfect for portfolio showcase:
+1.  Zainstaluj zależności:
+    ```bash
+    npm install
+    ```
+2.  Uruchom w trybie demo:
+    ```bash
+    npm run demo  # Włącza tryb demo
+    npm run dev
+    ```
 
-```bash
-npm install
-npm run demo  # Toggle demo mode
-npm run dev
-```
+### Pełna Wersja (Z Supabase)
 
-### Full Version (With Supabase)
+Do użytku produkcyjnego:
 
-For production use:
+1.  Zainstaluj zależności:
+    ```bash
+    npm install
+    ```
+2.  Skopiuj plik środowiskowy i wypełnij klucze:
+    ```bash
+    cp .env.example .env.local
+    # Wypełnij klucze Supabase i API w .env.local
+    ```
+3.  Uruchom aplikację:
+    ```bash
+    npm run dev
+    ```
 
-```bash
-npm install
-cp .env.example .env.local
-# Fill in your Supabase and API keys
-npm run dev
-```
+## Funkcje
 
-## ✨ Features
+* **Discover**: Przeglądaj tysiące filmów, seriali i gier.
+* **Rate & Review**: System 10-gwiazdkowych ocen z recenzjami tekstowymi.
+* **Watchlist**: Śledź, co chcesz obejrzeć/zagrać.
+* **Collections**: Twórz własne kolekcje i foldery.
+* **Social**: System znajomych i kanał aktywności (**activity feed**).
+* **Stats**: Śledź swoje nawyki oglądania/grania.
+* **i18n**: Wsparcie dla języka **Polskiego** i **Angielskiego**.
+* **Themes**:
+    * **Dark** (Ciemny): Nowoczesny, głęboki motyw.
+    * **Light** (Jasny): Klasyczny, jasny interfejs.
+* **Responsive**: Działa poprawnie na wszystkich urządzeniach.
 
-- 🎬 **Discover** - Browse thousands of movies, TV shows, and games
-- ⭐ **Rate & Review** - 10-star rating system with text reviews
-- 📚 **Watchlist** - Track what you want to watch/play
-- 📁 **Collections** - Create custom folders
-- 👥 **Social** - Friend system with activity feed
-- 📊 **Stats** - Track your viewing/gaming habits
-- 🌍 **i18n** - Polish & English support
-- 🌓 **Themes** - Dark & Light mode
-- 📱 **Responsive** - Works on all devices
+## Tech Stack
 
-## 🛠️ Tech Stack
+Projekt został zbudowany przy użyciu nowoczesnych technologii:
 
-- **Frontend:** React 18, TypeScript, TailwindCSS
-- **Backend:** Supabase (PostgreSQL, Auth, RLS)
-- **APIs:** TMDB (movies/TV), RAWG (games)
-- **State:** React Query, Context API
-- **UI:** Radix UI, Custom components
+* **Frontend**: **React 18**, **TypeScript**, **TailwindCSS**.
+* **Backend**: **Supabase** (PostgreSQL, Auth, RLS).
+* **APIs**: **TMDB** (filmy/seriale), **RAWG** (gry).
+* **State**: React Query, Context API.
+* **UI**: Radix UI, Custom components.
 
-## 📚 Documentation
+## Demo Mode vs Pełna Wersja
 
-- [Portfolio README](./PORTFOLIO-README.md) - Detailed project info
-- [Deployment Guide](./DEPLOYMENT-GUIDE.md) - How to deploy
-- [Supabase Setup](./supabase-setup.sql) - Database schema
+| Funkcja | Demo Mode | Pełna Wersja |
+| :--- | :--- | :--- |
+| **Backend** | ❌ Niepotrzebny | ✅ Supabase |
+| **Autoryzacja** | ❌ Mock user | ✅ Realna autoryzacja |
+| **Dane** | 📦 Przykładowe dane | 💾 Rzeczywista baza danych |
+| **Koszt** | 💰 $0 | 💰 $0 (darmowy plan) |
+| **Zastosowanie** | 🎨 Portfolio | 🚀 Produkcja |
 
-## 🎯 Demo Mode vs Full Version
+## Deployment
 
-| Feature  | Demo Mode      | Full Version      |
-| -------- | -------------- | ----------------- |
-| Backend  | ❌ Not needed  | ✅ Supabase       |
-| Auth     | ❌ Mock user   | ✅ Real auth      |
-| Data     | 📦 Sample data | 💾 Real database  |
-| Cost     | 💰 $0          | 💰 $0 (free tier) |
-| Use Case | 🎨 Portfolio   | 🚀 Production     |
+### Vercel (Rekomendowane)
 
-## 🚀 Deployment
+1.  Build:
+    ```bash
+    npm run build
+    ```
+2.  Deploy:
+    ```bash
+    vercel --prod
+    ```
 
-### Vercel (Recommended)
+### Wersja Demo
 
-```bash
-npm run build
-vercel --prod
-```
-
-### Demo Version
-
-```bash
-npm run build:demo
-vercel --prod
-```
-
-Set `VITE_DEMO_MODE=true` in Vercel environment variables.
-
-## 📸 Screenshots
-
-Coming soon...
-
-## 🤝 Contributing
-
-This is a portfolio project, but suggestions are welcome!
-
-## 📝 License
-
-MIT License - Free to use in your portfolio
-
-## 👨‍💻 Author
-
-Created with ❤️ for my portfolio
+1.  Build:
+    ```bash
+    npm run build:demo
+    ```
+2.  Deploy:
+    ```bash
+    vercel --prod
+    ```
+> **Uwaga**: Ustaw zmienną środowiskową **VITE\_DEMO\_MODE=true** w konfiguracji Vercel.
 
 ---
-
-⭐ **Star this repo if you like it!**
+*Code & Design by [matikgal](https://github.com/matikgal)*
