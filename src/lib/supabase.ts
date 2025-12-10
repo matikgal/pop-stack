@@ -14,4 +14,58 @@ if (!DEMO_MODE && (!supabaseUrl || !supabaseAnonKey)) {
 const url = supabaseUrl || 'https://dummy.supabase.co'
 const key = supabaseAnonKey || 'dummy-key'
 
-export const supabase = createClient<Database>(url, key)
+// Mock client for demo mode to prevent network errors
+const createMockClient = () => {
+	console.log('🔐 DEMO MODE: Using mock Supabase client')
+	
+	const mockChain = {
+		select: () => mockChain,
+		insert: () => mockChain,
+		update: () => mockChain,
+		delete: () => mockChain,
+		eq: () => mockChain,
+		neq: () => mockChain,
+		gt: () => mockChain,
+		lt: () => mockChain,
+		gte: () => mockChain,
+		lte: () => mockChain,
+		like: () => mockChain,
+		ilike: () => mockChain,
+		is: () => mockChain,
+		in: () => mockChain,
+		contains: () => mockChain,
+		order: () => mockChain,
+		limit: () => mockChain,
+		single: () => Promise.resolve({ data: null, error: null }),
+		maybeSingle: () => Promise.resolve({ data: null, error: null }),
+		then: (resolve: any) => resolve({ data: [], error: null }),
+	}
+
+	const mockAuth = {
+		getSession: () => Promise.resolve({ data: { session: null }, error: null }),
+		onAuthStateChange: () => ({ data: { subscription: { unsubscribe: () => {} } } }),
+		signInWithPassword: () => Promise.resolve({ data: { user: { id: 'demo' }, session: { access_token: 'demo' } }, error: null }),
+		signOut: () => Promise.resolve({ error: null }),
+		getUser: () => Promise.resolve({ data: { user: null }, error: null }),
+	}
+
+	return {
+		from: () => mockChain,
+		auth: mockAuth,
+		storage: {
+			from: () => ({
+				getPublicUrl: (path: string) => ({ data: { publicUrl: path } }),
+				upload: () => Promise.resolve({ data: { path: 'demo' }, error: null }),
+			}),
+		},
+		channel: () => ({
+			on: () => ({ subscribe: () => {} }),
+			subscribe: () => {},
+			unsubscribe: () => {},
+		}),
+	} as unknown as ReturnType<typeof createClient<Database>>
+}
+
+export const supabase = DEMO_MODE 
+	? createMockClient() 
+	: createClient<Database>(url, key)
