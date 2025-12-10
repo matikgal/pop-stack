@@ -41,7 +41,6 @@ export interface RAWGResponse {
 const rawgFetch = async <T>(endpoint: string): Promise<T> => {
 	// Demo mode support
 	if (import.meta.env.VITE_DEMO_MODE === 'true' || import.meta.env.VITE_DEMO_MODE === true) {
-		console.log('🎮 RAWG DEMO MODE: Returning fake data for endpoint:', endpoint)
 		
 		await new Promise(resolve => setTimeout(resolve, 500))
 

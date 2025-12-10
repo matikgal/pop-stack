@@ -15,9 +15,7 @@ const url = supabaseUrl || 'https://dummy.supabase.co'
 const key = supabaseAnonKey || 'dummy-key'
 
 // Mock client for demo mode to prevent network errors
-const createMockClient = () => {
-	console.log('🔐 DEMO MODE: Using mock Supabase client')
-	
+const createMockClient = () => {	
 	const mockChain = {
 		select: () => mockChain,
 		insert: () => mockChain,

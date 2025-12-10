@@ -26,6 +26,7 @@ import { actionTranslations } from '@/lib/i18n'
 import { useToast } from '@/hooks/use-toast'
 import { useCollections, useAddToCollection as useAddItemToCollection } from '@/hooks/useCollections'
 import { useAddToWatchlist, useIsInWatchlist, useRemoveFromWatchlist } from '@/hooks/useWatchlist'
+import { DEMO_MODE } from '@/lib/demoMode'
 
 // Helper component for movie card with watchlist check
 const MovieCardWithWatchlist = ({
@@ -232,7 +233,7 @@ const Dashboard = () => {
 
 	// Sprawdź czy jest klucz RAWG
 	const RAWG_API_KEY = import.meta.env.VITE_RAWG_API_KEY
-	const hasRAWGKey = RAWG_API_KEY && RAWG_API_KEY !== 'your-rawg-key-here'
+	const hasRAWGKey = DEMO_MODE || (RAWG_API_KEY && RAWG_API_KEY !== 'your-rawg-key-here')
 
 	// Akcje
 	const handleAddToCollection = (
