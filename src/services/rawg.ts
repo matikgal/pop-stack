@@ -39,6 +39,41 @@ export interface RAWGResponse {
 
 // Fetch helper z error handling
 const rawgFetch = async <T>(endpoint: string): Promise<T> => {
+	// Demo mode support
+	if (import.meta.env.VITE_DEMO_MODE === 'true' || import.meta.env.VITE_DEMO_MODE === true) {
+		console.log('🎮 RAWG DEMO MODE: Returning fake data for endpoint:', endpoint)
+		
+		await new Promise(resolve => setTimeout(resolve, 500))
+
+		const { DEMO_GAMES } = await import('../lib/demoMode')
+		
+		const results = DEMO_GAMES.map(g => ({
+			id: g.game_id,
+			name: g.game_title,
+			background_image: g.game_cover,
+			rating: g.rating,
+			rating_top: 10,
+			ratings_count: 100,
+			released: g.watched_date,
+			metacritic: 95,
+			playtime: g.hours_played,
+			platforms: [{ platform: { id: 1, name: g.platform, slug: g.platform.toLowerCase() } }],
+			genres: [{ id: 1, name: 'Action', slug: 'action' }],
+			short_screenshots: [{ id: 1, image: g.game_cover }]
+		})) as unknown as RAWGGame[]
+
+		if (endpoint.match(/\/games\/\d+$/)) {
+			return results[0] as unknown as T
+		}
+
+		return {
+			count: results.length,
+			next: null,
+			previous: null,
+			results: results
+		} as unknown as T
+	}
+
 	try {
 		const url = `${RAWG_BASE_URL}${endpoint}${endpoint.includes('?') ? '&' : '?'}key=${RAWG_API_KEY}`
 		const response = await fetch(url)

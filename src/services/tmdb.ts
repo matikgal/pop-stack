@@ -32,6 +32,73 @@ export const getTMDBImageUrl = (path: string | null, size: 'w200' | 'w500' | 'or
 
 // Fetch helper z error handling
 const tmdbFetch = async <T>(endpoint: string): Promise<T> => {
+	// Demo mode support
+	if (import.meta.env.VITE_DEMO_MODE === 'true' || import.meta.env.VITE_DEMO_MODE === true) {
+		console.log('🎬 TMDB DEMO MODE: Returning fake data for endpoint:', endpoint)
+		
+		// Simulate network delay
+		await new Promise(resolve => setTimeout(resolve, 500))
+		
+		// Return appropriate mock data based on endpoint
+		if (endpoint.includes('movie')) {
+			const { DEMO_MOVIES } = await import('../lib/demoMode')
+			// Mapping demo movies to TMDB format
+			const results = DEMO_MOVIES.map(m => ({
+				id: m.movie_id,
+				title: m.movie_title,
+				poster_path: m.movie_poster,
+				vote_average: m.rating,
+				overview: m.review_text || 'Demo movie overview',
+				release_date: m.watched_date,
+				genre_ids: [28, 12],
+				backdrop_path: m.movie_poster,
+			})) as unknown as TMDBMovie[]
+
+			if (endpoint.includes('details') || endpoint.match(/\/movie\/\d+$/)) {
+				return results[0] as unknown as T
+			}
+
+			return {
+				page: 1,
+				results: results,
+				total_pages: 1,
+				total_results: results.length
+			} as unknown as T
+		} 
+		
+		if (endpoint.includes('tv')) {
+			const { DEMO_SERIES } = await import('../lib/demoMode')
+			const results = DEMO_SERIES.map(s => ({
+				id: s.series_id,
+				name: s.series_title,
+				poster_path: s.series_poster,
+				vote_average: s.rating,
+				overview: s.review_text || 'Demo series overview',
+				first_air_date: s.watched_date,
+				genre_ids: [18, 10765],
+				backdrop_path: s.series_poster,
+			})) as unknown as TMDBMovie[]
+
+			if (endpoint.match(/\/tv\/\d+$/)) {
+				return results[0] as unknown as T
+			}
+
+			return {
+				page: 1,
+				results: results,
+				total_pages: 1,
+				total_results: results.length
+			} as unknown as T
+		}
+		
+		return {
+			page: 1,
+			results: [],
+			total_pages: 1,
+			total_results: 0
+		} as unknown as T
+	}
+
 	try {
 		const response = await fetch(`${TMDB_BASE_URL}${endpoint}`, {
 			headers: {
