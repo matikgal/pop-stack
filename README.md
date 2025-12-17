@@ -1,99 +1,38 @@
-# PopStack // MEDIA_TRACKING_PLATFORM
+# PopStack
 
-Platforma społecznościowa dla entuzjastów filmów, seriali i gier wideo. **Oceniaj, recenzuj** i dziel się swoją rozrywkową podróżą ze znajomymi.
+Nowoczesna platforma społecznościowa dla entuzjastów filmów, seriali i gier wideo. PopStack umożliwia odkrywanie nowych tytułów, ocenianie ich oraz śledzenie aktywności znajomych w jednym miejscu.
 
-## Quick Start
+## Demo
 
-### Tryb Demo (Bez Backendu)
+Zobacz aplikację na żywo: <a href="https://matikgal.github.io/pop-stack/" target="_blank">Link</a>
 
-Idealny do prezentacji w portfolio:
+## O projekcie
 
-1.  Zainstaluj zależności:
-    ```bash
-    npm install
-    ```
-2.  Uruchom w trybie demo:
-    ```bash
-    npm run demo  # Włącza tryb demo
-    npm run dev
-    ```
+PopStack to kompleksowa aplikacja webowa, która łączy świat filmów, seriali i gier. Projekt powstał, aby umożliwić użytkownikom łatwe zarządzanie swoją biblioteką mediów oraz interakcję ze społecznością o podobnych zainteresowaniach. Aplikacja wykorzystuje potężne API (TMDB, RAWG) do dostarczania aktualnych informacji o tysiącach produkcji.
 
-### Pełna Wersja (Z Supabase)
+Głównym celem było stworzenie wydajnego, responsywnego interfejsu ("Mobile First") z wykorzystaniem nowoczesnego stacku technologicznego oraz zapewnienie bezpieczeństwa danych i autentykacji użytkowników.
 
-Do użytku produkcyjnego:
+## Technologie
 
-1.  Zainstaluj zależności:
-    ```bash
-    npm install
-    ```
-2.  Skopiuj plik środowiskowy i wypełnij klucze:
-    ```bash
-    cp .env.example .env.local
-    # Wypełnij klucze Supabase i API w .env.local
-    ```
-3.  Uruchom aplikację:
-    ```bash
-    npm run dev
-    ```
+- **Frontend:** ![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB) ![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white) ![TailwindCSS](https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white)
+- **Backend:** ![Supabase](https://img.shields.io/badge/Supabase-3ECF8E?style=for-the-badge&logo=supabase&logoColor=white) ![PostgreSQL](https://img.shields.io/badge/postgresql-4169e1?style=for-the-badge&logo=postgresql&logoColor=white)
+- **Inne:** ![Vite](https://img.shields.io/badge/vite-%23646CFF.svg?style=for-the-badge&logo=vite&logoColor=white) ![React Query](https://img.shields.io/badge/-React%20Query-FF4154?style=for-the-badge&logo=react%20query&logoColor=white) ![React Router](https://img.shields.io/badge/React_Router-CA4245?style=for-the-badge&logo=react-router&logoColor=white)
 
-## Funkcje
+## Główne funkcjonalności
 
-* **Discover**: Przeglądaj tysiące filmów, seriali i gier.
-* **Rate & Review**: System 10-gwiazdkowych ocen z recenzjami tekstowymi.
-* **Watchlist**: Śledź, co chcesz obejrzeć/zagrać.
-* **Collections**: Twórz własne kolekcje i foldery.
-* **Social**: System znajomych i kanał aktywności (**activity feed**).
-* **Stats**: Śledź swoje nawyki oglądania/grania.
-* **i18n**: Wsparcie dla języka **Polskiego** i **Angielskiego**.
-* **Themes**:
-    * **Dark** (Ciemny): Nowoczesny, głęboki motyw.
-    * **Light** (Jasny): Klasyczny, jasny interfejs.
-* **Responsive**: Działa poprawnie na wszystkich urządzeniach.
+- Odkrywanie filmów, seriali i gier (integracja z TMDB i RAWG)
+- System ocen (1-10) i recenzji
+- Tworzenie list "Do obejrzenia/zagrania" (Watchlist)
+- Personalizowane kolekcje tematyczne
+- Funkcje społecznościowe: dodawanie znajomych i podgląd ich aktywności
+- Zaawansowane filtry i wyszukiwanie
+- Statystyki profilu użytkownika
+- Obsługa motywu jasnego i ciemnego (Dark/Light Mode)
+- Pełna responsywność (Mobile First)
+- System powiadomień (Toast Notifications)
 
-## Tech Stack
+## Kontakt
 
-Projekt został zbudowany przy użyciu nowoczesnych technologii:
-
-* **Frontend**: **React 18**, **TypeScript**, **TailwindCSS**.
-* **Backend**: **Supabase** (PostgreSQL, Auth, RLS).
-* **APIs**: **TMDB** (filmy/seriale), **RAWG** (gry).
-* **State**: React Query, Context API.
-* **UI**: Radix UI, Custom components.
-
-## Demo Mode vs Pełna Wersja
-
-| Funkcja | Demo Mode | Pełna Wersja |
-| :--- | :--- | :--- |
-| **Backend** | ❌ Niepotrzebny | ✅ Supabase |
-| **Autoryzacja** | ❌ Mock user | ✅ Realna autoryzacja |
-| **Dane** | 📦 Przykładowe dane | 💾 Rzeczywista baza danych |
-| **Koszt** | 💰 $0 | 💰 $0 (darmowy plan) |
-| **Zastosowanie** | 🎨 Portfolio | 🚀 Produkcja |
-
-## Deployment
-
-### Vercel (Rekomendowane)
-
-1.  Build:
-    ```bash
-    npm run build
-    ```
-2.  Deploy:
-    ```bash
-    vercel --prod
-    ```
-
-### Wersja Demo
-
-1.  Build:
-    ```bash
-    npm run build:demo
-    ```
-2.  Deploy:
-    ```bash
-    vercel --prod
-    ```
-> **Uwaga**: Ustaw zmienną środowiskową **VITE\_DEMO\_MODE=true** w konfiguracji Vercel.
-
----
-*Code & Design by [matikgal](https://github.com/matikgal)*
+Email: mateusz.galuszka21@gmail.com
+<br>
+_Stworzone przez Mateusz Gałuszka_
